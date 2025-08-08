@@ -1,0 +1,5 @@
+package com.wipro.amazonmono.controller;
+
+public class ProductController {
+
+}

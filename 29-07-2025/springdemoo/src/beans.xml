@@ -1,0 +1,15 @@
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+<bean id="student" class="com.wipro.sprindgdemo.beans.Student" scope="singleton">
+<property name="studentName" value="Amit"/>
+<property name="studentRollNumber" value="R111"/>
+</bean>
+<bean id="employee" class="com.wipro.sprindgdemo.beans.Employee"/>
+<bean id="engine" class="com.wipro.sprindgdemo.beans.Engine">
+<property name="manuFacturer" value="Cummins"/>
+<property name="capacity" value="1.1"/>
+</bean>
+<bean id="car" class="com.wipro.sprindgdemo.beans.Car">
+<property name="make" value="Hyundai"/>
+<property name="engine" ref="engine"/>
+</bean>
+</beans>
