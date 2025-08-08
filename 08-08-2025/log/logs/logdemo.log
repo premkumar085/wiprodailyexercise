@@ -1,0 +1,2 @@
+2025-08-08T12:19:57.915+05:30 ERROR 17920 --- [log] [http-nio-8080-exec-4] com.wipro.log.controller.LogController   : --ERROR--
+2025-08-08T12:19:57.920+05:30  WARN 17920 --- [log] [http-nio-8080-exec-4] com.wipro.log.controller.LogController   : --WARN--
