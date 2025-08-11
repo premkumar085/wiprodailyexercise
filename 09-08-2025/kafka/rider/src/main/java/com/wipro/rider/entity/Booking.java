@@ -8,7 +8,6 @@ import lombok.Data;
 @Table(name="booking")
 @Data
 public class Booking {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;

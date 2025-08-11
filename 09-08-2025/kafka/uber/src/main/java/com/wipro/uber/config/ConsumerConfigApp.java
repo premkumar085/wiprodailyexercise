@@ -12,7 +12,7 @@ import org.springframework.kafka.core.*;
 import org.springframework.kafka.support.serializer.JsonDeserializer;
 
 import com.wipro.uber.dto.BookingDTO;
- 
+
 @Configuration
 public class ConsumerConfigApp {
 
@@ -28,7 +28,7 @@ public class ConsumerConfigApp {
     @Bean
     public JsonDeserializer<BookingDTO> jsonDeserializer() {
         JsonDeserializer<BookingDTO> jsonDeserializer = new JsonDeserializer<>(BookingDTO.class).ignoreTypeHeaders();
-        // jsonDeserializer.addTrustedPackages("*");
+        jsonDeserializer.addTrustedPackages("*");
         return jsonDeserializer;
     }
 

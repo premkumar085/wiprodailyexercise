@@ -10,11 +10,15 @@ import com.wipro.rider.service.RiderService;
 @RequestMapping("/rider")
 public class RiderController {
 
-    @Autowired
-    RiderService riderService;
+    @Autowired RiderService riderService;
 
     @PostMapping("/book")
-    void book(@RequestBody Booking booking) {
+    public void book(@RequestBody Booking booking) {
         riderService.bookRide(booking);
+    }
+
+    @GetMapping("/status/{id}")
+    public Booking getStatus(@PathVariable int id, @Autowired com.wipro.rider.repo.BookingRepo repo) {
+        return repo.findById(id).orElse(null);
     }
 }

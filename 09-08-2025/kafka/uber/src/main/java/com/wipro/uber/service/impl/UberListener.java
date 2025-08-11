@@ -11,11 +11,11 @@ import com.wipro.uber.util.AppConstant;
 @Service
 public class UberListener {
 
-    @Autowired
-    UberService uberService;
+    @Autowired UberService uberService;
 
     @KafkaListener(topics = AppConstant.INCOMING_TOPIC_NAME, groupId = "uber_rider")
     public void receiveBooking(BookingDTO booking) {
+        System.out.println("UberListener: Received from Rider -> " + booking);
         uberService.processBooking(booking);
     }
 }

@@ -10,11 +10,15 @@ import com.wipro.uber.repo.UberRideRepo;
 @RequestMapping("/uber")
 public class UberController {
 
-    @Autowired
-    UberRideRepo uberRideRepo;
+    @Autowired UberRideRepo uberRideRepo;
 
     @PostMapping("/addRide")
-    public void addRide(@RequestBody UberRide ride) {
+    public void add(@RequestBody UberRide ride) {
         uberRideRepo.save(ride);
+    }
+
+    @GetMapping("/rides")
+    public java.util.List<UberRide> all() {
+        return uberRideRepo.findAll();
     }
 }

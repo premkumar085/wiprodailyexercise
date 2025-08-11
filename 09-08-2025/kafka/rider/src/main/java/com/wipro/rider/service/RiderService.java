@@ -4,5 +4,4 @@ import com.wipro.rider.entity.Booking;
 
 public interface RiderService {
     void bookRide(Booking booking);
-    void sendToUber(Booking booking);
 }

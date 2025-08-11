@@ -28,7 +28,7 @@ public class ConsumerConfigApp {
     @Bean
     public JsonDeserializer<Booking> jsonDeserializer() {
         JsonDeserializer<Booking> jsonDeserializer = new JsonDeserializer<>(Booking.class).ignoreTypeHeaders();
-        // jsonDeserializer.addTrustedPackages("*");
+        jsonDeserializer.addTrustedPackages("*"); 
         return jsonDeserializer;
     }
 
