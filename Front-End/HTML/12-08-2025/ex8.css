@@ -1,0 +1,15 @@
+body {
+    background-color: #f8f9fa;
+}
+
+.login-card {
+    width: 100%;
+    max-width: 400px;
+    border-radius: 10px;
+    background-color: white;
+}
+
+.login-card h3 {
+    font-weight: bold;
+    color: #007bff;
+}

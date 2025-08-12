@@ -1,0 +1,129 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+  background-color: white;
+}
+
+header {
+  background-color: #333;
+  color: white;
+  padding: 10px 20px;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+  margin-left: 15px;
+}
+
+.navbar a:hover {
+  text-decoration: underline;
+}
+
+.hero {
+  text-align: center;
+  padding: 40px 20px;
+  background-color: blue;
+  color: white;
+}
+
+.hero h1 {
+  margin-bottom: 10px;
+}
+
+.meta {
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+main {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+  max-width: 1000px;
+  margin: auto;
+}
+
+article {
+  flex: 3;
+  background: white;
+  padding: 15px;
+  border-radius: 5px;
+}
+
+article img {
+  width: 100%;
+  margin: 10px 0;
+  border-radius: 5px;
+}
+
+aside {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.card {
+  background: white;
+  padding: 15px;
+  border-radius: 5px;
+}
+
+.author img {
+  width: 80px;
+  border-radius: 50%;
+}
+
+.social a {
+  display: inline-block;
+  margin-right: 10px;
+  color: blue;
+  text-decoration: none;
+}
+
+.social a:hover {
+  text-decoration: underline;
+}
+
+.recent a {
+  display: block;
+  color: blue;
+  margin: 5px 0;
+  text-decoration: none;
+}
+
+.recent a:hover {
+  text-decoration: underline;
+}
+
+footer {
+  background: gray;
+  color: white;
+  text-align: center;
+  padding: 15px;
+  margin-top: 20px;
+}
+
+footer a {
+  color: black;
+  text-decoration: none;
+}
+
+footer a {
+  text-decoration: underline;
+}
+
+@media (max-width: 500px) {
+  main {
+    flex-direction: column;
+  }
+}

@@ -1,0 +1,24 @@
+ /* Universal selector:*/
+        * {
+            color: gray;
+            font-size: 18px;
+        }
+
+        /* Group selector */
+        h1, p {
+            color: blue;
+            text-align: center;
+        }
+
+        /* Class selector */
+        .highlight {
+            color: green;
+            font-size: 20px;
+        }
+
+        /* ID selector*/
+        #special {
+            color: red;
+            font-size: 24px;
+            font-weight: bold;
+        }
