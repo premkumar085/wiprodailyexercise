@@ -1,0 +1,24 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    padding: 50px;
+}
+
+.gallery-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+img {
+    width: 400px;
+    height: 300px;
+    object-fit: cover;
+    border: 2px solid #333;
+}
+
+button {
+    padding: 10px 20px;
+    cursor: pointer;
+}
