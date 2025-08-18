@@ -1,0 +1,8 @@
+<div class="container mt-3">
+  <input type="text"placeholder="Type to search"[(ngModel)]="searchText"/>
+  <select class="form-select" size="6">
+    @for (n of filtered; track n) {
+      <option>{{ n }}</option>
+    }
+  </select>
+</div>
