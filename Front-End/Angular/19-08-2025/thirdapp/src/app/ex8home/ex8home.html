@@ -1,0 +1,18 @@
+<h2>Ex8 - Task Manager</h2>
+
+<div>
+  <label for="desc" class="form-label">Task Description:</label>
+  <input id="desc" type="text" [(ngModel)]="newDescription" placeholder="Enter task" class="form-control">
+
+  <label for="cat" >Task Category:</label>
+  <select id="cat" [(ngModel)]="newCategory" class="form-select">
+    <option>Work</option>
+    <option>Study</option>
+    <option>Exercise</option>
+    <option>Other</option>
+  </select>
+
+  <button  (click)="addTask()">Add Task</button>
+</div>
+
+<app-ex8tasklist [tasks]="tasks" (remove)="remove($event)"></app-ex8tasklist>

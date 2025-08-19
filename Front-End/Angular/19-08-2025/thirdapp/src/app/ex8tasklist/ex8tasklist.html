@@ -1,0 +1,7 @@
+<div class="row">
+  @for (task of tasks; track task.id) {
+    <div class="col-12 mb-2">
+      <app-ex8task [task]="task" (btnClick)="removeTask($event)"></app-ex8task>
+    </div>
+  }
+</div>
