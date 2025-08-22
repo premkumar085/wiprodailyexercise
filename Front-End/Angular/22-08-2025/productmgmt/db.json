@@ -1,0 +1,22 @@
+{
+  "products": [
+    {
+      "id": "a3b6",
+      "name": "Realme5s",
+      "category": "mobile",
+      "price": 12000
+    },
+    {
+      "id": "b617",
+      "name": "Vivo",
+      "category": "Mobile",
+      "price": 15000
+    },
+    {
+      "id": "a705",
+      "name": "Vivo",
+      "category": "Mobile",
+      "price": 15000
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+<div class="purchase-screen">
+  <h2>Place Order</h2>
+
+  <div>
+    <label for="product">Product:</label>
+    <select id="product" name="selectedProductId" [(ngModel)]="selectedProductId">
+      @for (p of products; track p.id) {
+        <option [value]="p.id">{{ p.name }} (Stock: {{p.qty}})</option>
+      }
+    </select>
+  </div>
+
+  <div>
+    <label for="qty">Quantity:</label>
+    <input id="qty" name="purchaseQty" type="number" [(ngModel)]="purchaseQty">
+  </div>
+
+  <button (click)="placeOrder()">Place Order</button>
+
+  <p class="message">{{message}}</p>
+</div>

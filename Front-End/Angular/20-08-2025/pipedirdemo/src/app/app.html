@@ -1,0 +1,28 @@
+<!------------ Ex1----------->
+<h2>Ex1</h2>
+<input type="text" [(ngModel)]="Text" placeholder="Type something...">
+<p>{{ Text | uppercase }}</p>
+
+<!------------ Ex2 ------------>
+
+<h2>Ex2</h2>
+<input type="date" [(ngModel)]="Date">
+<p>Date:{{ Date | date:'short' }}</p>
+
+
+<!-------------- Ex3 -------------->
+
+<h2>Ex3</h2>
+<input type="number" #celsius placeholder="Enter °C">
+<p>Converted:{{ celsius.value | ex3ctof }}</p>
+
+<!-------------- Ex4 -------------->
+
+<h2>Ex-4</h2>
+<p appEx4colordir>
+This text is yellow and struck through using a custom directive.
+</p>
+
+
+
+

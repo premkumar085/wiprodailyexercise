@@ -1,0 +1,21 @@
+<div class="order-history">
+  <h2>Order History</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Order Date</th>
+        <th>Product</th>
+        <th>Qty Purchased</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (o of orders; track o.id) {
+        <tr>
+          <td>{{ o.orderDate }}</td>
+          <td>{{ o.productName }}</td>
+          <td>{{ o.qtyPurchased }}</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>
