@@ -2,13 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Product } from './product';
-import { Order } from './order';
 
-@Injectable({
-  providedIn: 'root'
-})
-export class ProductService {
-  
+@Injectable({ providedIn: 'root' })
+export class Productservice {
   constructor(private http: HttpClient) {}
 
   getProducts(): Observable<Product[]> {

@@ -1,15 +1,15 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { ProductService } from '../product-service';
-import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { Productservice } from '../productservice';
 import { Product } from '../product';
+import { OrderService } from '../orderservice';
+import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { OrderService } from '../order-service';
 
 @Component({
-  selector: 'app-purchase',
-  imports: [FormsModule],
-  templateUrl: './purchase.html',
-  styleUrl: './purchase.css'
+  selector: 'app-ordercomp',
+  imports: [CommonModule, FormsModule],
+  templateUrl: './ordercomp.html',
+  styleUrl: './ordercomp.css'
 })
 export class OrderCompComponent implements OnInit {
   products: Product[] = [];
@@ -17,7 +17,7 @@ export class OrderCompComponent implements OnInit {
   purchaseQty: number = 0;
   message: string = '';
 
-  constructor(private productService: ProductService, private orderService: OrderService) {}
+  constructor(private productService: Productservice, private orderService: OrderService) {}
 
   ngOnInit(): void {
     this.productService.getProducts().subscribe(data => {
@@ -47,7 +47,7 @@ export class OrderCompComponent implements OnInit {
     this.orderService.placeOrder(product.id!, this.purchaseQty).subscribe({
       next: () => {
         this.message = "Order placed successfully!";
-        product.qty -= this.purchaseQty;     
+        product.qty -= this.purchaseQty;      // reflect new stock
         this.purchaseQty = 0;
       },
       error: (err) => {

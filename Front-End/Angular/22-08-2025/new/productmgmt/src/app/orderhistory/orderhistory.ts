@@ -1,11 +1,11 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { ProductService } from '../product-service';
-import { Order } from '../order';
-import { OrderService } from '../order-service';
+import { Component, OnInit } from '@angular/core';
+import { OrderService } from '../orderservice';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-orderhistory',
-  imports: [],
+  imports: [CommonModule, FormsModule],
   templateUrl: './orderhistory.html',
   styleUrl: './orderhistory.css'
 })
@@ -17,4 +17,5 @@ export class OrderHistoryComponent implements OnInit{
   ngOnInit() {
     this.orderService.getOrderHistory().subscribe(data => this.orders = data);
   }
+
 }

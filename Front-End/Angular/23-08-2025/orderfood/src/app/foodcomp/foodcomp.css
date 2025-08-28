@@ -1,0 +1,9 @@
+.card:hover {
+  transform: scale(1.02);
+  transition: 0.3s;
+}
+
+.card-img-top {
+  height: 150px;
+  object-fit: cover;
+}

@@ -1,0 +1,26 @@
+<div class="container mt-4">
+  <div class="d-flex justify-content-between mb-3">
+    <h2>Andhra Food Booking</h2>
+    <button class="btn btn-success" (click)="addFood()">Add Food</button>
+  </div>
+
+  <div class="row">
+    @for (food of foods; track food.id) {
+      <div class="col-md-4 mb-4 d-inline-block">
+        <div class="card" style="width: 18rem;">
+          <img [src]="food.imageUrl ? food.imageUrl : 'https://via.placeholder.com/150?text=' + food.name" 
+               class="card-img-top" alt="{{food.name}}">
+          <div class="card-body">
+            <h5 class="card-title">{{ food.name }}</h5>
+            <p class="card-text">{{ food.description }}</p>
+            <p class="card-text"><strong>Price: ₹{{ food.price }}</strong></p>
+            <div class="d-flex justify-content-between">
+              <button class="btn btn-danger" (click)="deleteFood(food)">Delete</button>
+              <button class="btn btn-primary" (click)="editFood(food)">Edit</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+</div>
