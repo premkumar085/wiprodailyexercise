@@ -4,6 +4,7 @@ import lombok.Data;
 
 @Data
 public class Food {
-    private int id;
-    private double price;
+	int id;
+	double price;
+
 }

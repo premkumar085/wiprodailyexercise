@@ -6,4 +6,5 @@ import com.wipro.order.entity.OrderMaster;
 
 @Repository
 public interface OrderMasterRepo extends JpaRepository<OrderMaster, Integer> {
+
 }

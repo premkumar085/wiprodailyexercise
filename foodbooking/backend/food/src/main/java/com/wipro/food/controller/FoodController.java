@@ -9,7 +9,8 @@ import com.wipro.food.entity.Food;
 import com.wipro.food.service.FoodService;
 
 @RestController
-@RequestMapping("/food")
+@RequestMapping("/foods")
+@CrossOrigin(origins = "http://localhost:4200")
 public class FoodController {
 	
 	@Autowired
