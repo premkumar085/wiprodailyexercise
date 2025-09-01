@@ -1,37 +1,29 @@
 package com.wipro.product.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Data;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "product")
 @Data
 public class Product {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int id;
+    private int id;
 
-    @Column(name = "product_name")
-    String productName;
+    @Column(nullable=false)
+    private String prodName;
 
-    @Column(name = "product_desc")
-    String productDescription;
+    private String prodDesc;
+    private String prodCat; 
+    private String make;
 
-    @Column(name = "price")
-    double price;
+    private int availableQty;
+    private double price;
+    private String uom; 
+    private double prodRating;
+    private String imageURL;
 
-    @Column(name = "quantity")
-    int quantity;
-
-    @Column(name = "category")
-    String category;
-
-    @Column(name = "image_url")
-    String imageUrl;
+    private LocalDate dateOfManufacture;
 }

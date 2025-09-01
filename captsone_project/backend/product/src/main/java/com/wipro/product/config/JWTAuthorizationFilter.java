@@ -1,6 +1,7 @@
 package com.wipro.product.config;
 
 import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.security.Keys;
@@ -8,13 +9,13 @@ import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.ws.rs.HttpMethod;
+
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.OncePerRequestFilter;
-
 import com.wipro.product.util.AppConstant;
-
 import java.io.IOException;
 import java.security.Key;
 import java.util.Base64;
@@ -23,63 +24,51 @@ import java.util.stream.Collectors;
 
 public class JWTAuthorizationFilter extends OncePerRequestFilter {
 
-    private final String HEADER = "Authorization";
-    private final String PREFIX = "Bearer ";
+    private static final String HEADER = "Authorization";
+    private static final String PREFIX = "Bearer ";
 
     @Override
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
+    protected void doFilterInternal(HttpServletRequest req, HttpServletResponse res, FilterChain chain)
             throws IOException, ServletException {
 
-        try {
-            // allow public login endpoints from your user service if needed (example)
-            if (request.getRequestURI().equals("/user/login")) {
-                chain.doFilter(request, response);
-                return;
-            }
+        if (HttpMethod.OPTIONS.matches(req.getMethod())) {
+            chain.doFilter(req, res);
+            return;
+        }
 
-            if (checkJWTToken(request)) {
-                Claims claims = validateToken(request);
+        try {
+            if (hasToken(req)) {
+                Claims claims = parseToken(req);
                 if (claims.get("authorities") != null) {
-                    setUpSpringAuthentication(claims);
-                } else {
-                    SecurityContextHolder.clearContext();
+                    setAuth(claims);
                 }
-            } else {
-                // no token: permit GET endpoints via WebSecurityConfig; other requests will be denied later
-                SecurityContextHolder.clearContext();
             }
-            chain.doFilter(request, response);
+            chain.doFilter(req, res);
+        } catch (ExpiredJwtException eje) {
+            res.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+            res.getWriter().write("Token expired");
         } catch (JwtException e) {
-            e.printStackTrace();
-            response.setStatus(HttpServletResponse.SC_FORBIDDEN);
-            response.sendError(HttpServletResponse.SC_FORBIDDEN, e.getMessage());
+            res.setStatus(HttpServletResponse.SC_FORBIDDEN);
+            res.getWriter().write(e.getMessage());
         }
     }
 
-    private Claims validateToken(HttpServletRequest request) {
-        String jwtToken = request.getHeader(HEADER).replace(PREFIX, "");
+    private boolean hasToken(HttpServletRequest req) {
+        String header = req.getHeader(HEADER);
+        return header != null && header.startsWith(PREFIX);
+    }
+
+    private Claims parseToken(HttpServletRequest req) {
+        String token = req.getHeader(HEADER).replace(PREFIX, "");
         Key key = Keys.hmacShaKeyFor(Base64.getDecoder().decode(AppConstant.SECRET));
-        return Jwts
-                .parserBuilder()
-                .setSigningKey(key)
-                .build()
-                .parseClaimsJws(jwtToken)
-                .getBody();
+        return Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(token).getBody();
     }
 
-    private void setUpSpringAuthentication(Claims claims) {
-        @SuppressWarnings("unchecked")
-        List<String> authorities = (List<String>) claims.get("authorities");
-
-        UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(
+    private void setAuth(Claims claims) {
+        List<String> roles = (List<String>) claims.get("authorities");
+        var auth = new UsernamePasswordAuthenticationToken(
                 claims.getSubject(), null,
-                authorities.stream().map(SimpleGrantedAuthority::new).collect(Collectors.toList())
-        );
+                roles.stream().map(SimpleGrantedAuthority::new).toList());
         SecurityContextHolder.getContext().setAuthentication(auth);
-    }
-
-    private boolean checkJWTToken(HttpServletRequest request) {
-        String authHeader = request.getHeader(HEADER);
-        return authHeader != null && authHeader.startsWith(PREFIX);
     }
 }

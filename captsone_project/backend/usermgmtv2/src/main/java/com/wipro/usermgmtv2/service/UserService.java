@@ -9,7 +9,5 @@ public interface UserService {
     User findById(int id);
     void save(User user);
     void deleteById(int id);
-    User updateUser(int id, User user);
     Token login(User user);
-    String getMenu(int id);
 }
