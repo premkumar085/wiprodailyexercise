@@ -1,0 +1,36 @@
+<div class="signup-container">
+  <h2>Sign Up</h2>
+  <form (ngSubmit)="signup()" #s="ngForm">
+    <div class="mb-3">
+      <label>First name</label>
+      <input [(ngModel)]="payload.firstName" name="firstName" class="form-control" required />
+    </div>
+
+    <div class="mb-3">
+      <label>Last name</label>
+      <input [(ngModel)]="payload.lastName" name="lastName" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+      <label>Email</label>
+      <input [(ngModel)]="payload.emailId" name="emailId" class="form-control" type="email" required />
+    </div>
+
+    <div class="mb-3">
+      <label>User ID (optional)</label>
+      <input [(ngModel)]="payload.userId" name="userId" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+      <label>Password</label>
+      <input [(ngModel)]="payload.passWord" name="passWord" class="form-control" type="password" required />
+    </div>
+
+    <div class="mb-3">
+      <label>Address</label>
+      <input [(ngModel)]="payload.address" name="address" class="form-control" />
+    </div>
+
+    <button class="btn btn-success" type="submit">Sign Up</button>
+  </form>
+</div>

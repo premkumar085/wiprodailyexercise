@@ -1,0 +1,19 @@
+<div class="product-grid">
+  <div class="product-card" *ngFor="let prod of products">
+    <img [src]="prod.imageURL" alt="{{prod.prodName}}" />
+    <h3>{{ prod.prodName }}</h3>
+    <p>{{ prod.prodDesc }}</p>
+    <p>Category: {{ prod.prodCat }}</p>
+    <p>Price: ₹{{ prod.price }}</p>
+    <p>Qty: {{ prod.availableQty }} {{ prod.uom }}</p>
+
+    <button *ngIf="authService.getRole()?.toUpperCase() === 'ADMIN'" (click)="editProduct(prod.id)">Edit</button>
+    <button *ngIf="authService.getRole()?.toUpperCase() === 'ADMIN'" (click)="deleteProduct(prod.id)">Delete</button>
+
+    <button *ngIf="authService.getRole()?.toUpperCase() === 'CUSTOMER'" (click)="addToCart(prod)">Add to Cart</button>
+    <button *ngIf="authService.getRole()?.toUpperCase() === 'CUSTOMER'" (click)="placeOrder(prod)">Place Order</button>
+  </div>
+</div>
+
+<button *ngIf="authService.getRole()?.toUpperCase() === 'ADMIN'" (click)="addProduct()">Add Product</button>
+
